@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour {
     //VARIABLES
 
     //METHODS
+
+	void Start () {
+		TurretManager.instance.InitialiseManager();
+	}
     
     
 }
