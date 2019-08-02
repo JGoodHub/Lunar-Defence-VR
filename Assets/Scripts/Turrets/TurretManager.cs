@@ -20,6 +20,7 @@ public class TurretManager : MonoBehaviour {
 
 	public TurretController[] turrets = new TurretController[3];
 
+	[Header("Dummy Attributes")]
 	public Vector3 dummyStartingPosition;
 	public float dummySpeed;
 
