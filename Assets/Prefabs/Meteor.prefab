@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2587879423912438341}
   - component: {fileID: 6235831746668364402}
   - component: {fileID: 6160455321528188045}
+  - component: {fileID: 6305499574201936326}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Meteor
@@ -76,7 +77,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingSpeed: 40
+  startingHealth: 0
   drawDirectionGizmos: 1
+--- !u!114 &6305499574201936326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4329830597194686033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6160455321528188045}
+          m_MethodName: SetAsTarget
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1001 &4329830595905318304
 PrefabInstance:
   m_ObjectHideFlags: 0

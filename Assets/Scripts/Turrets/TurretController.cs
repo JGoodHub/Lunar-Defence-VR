@@ -6,8 +6,8 @@ public class TurretController : MonoBehaviour {
 
     //VARIABLES
 
-	private Transform targetMeteor;
-	public Transform TargetMeteor { set => targetMeteor = value; }
+	private Transform targetMeteorTransform;
+	public Transform TargetMeteorTransform { set => targetMeteorTransform = value; }
 
 	public Transform turretTransform;
 	public float rateOfFire;
@@ -17,7 +17,7 @@ public class TurretController : MonoBehaviour {
 	
 	void Update () {
 		fireCooldown -= Time.deltaTime;
-		if (targetMeteor != null) {
+		if (targetMeteorTransform != null) {
 			AimTurretAtLeadingTarget();
 			
 			if (fireCooldown <= 0) {
@@ -29,7 +29,8 @@ public class TurretController : MonoBehaviour {
 
 	private void AimTurretAtLeadingTarget () {
 		//TODO ---> Aim the turret ahead of the meteor so that the projectile always hits
-		turretTransform.LookAt(targetMeteor);
+		turretTransform.LookAt(targetMeteorTransform);
+		Debug.DrawRay(turretTransform.position, targetMeteorTransform.position - turretTransform.position);
 	}
 
 	private void FireProjectile () {

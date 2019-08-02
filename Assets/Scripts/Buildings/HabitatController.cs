@@ -14,5 +14,9 @@ public class HabitatController : MonoBehaviour {
 	public void InitialiseController () {
 		currentHealth = startingHealth;
 	}
+
+	public void Log () {
+		Debug.Log("Message");
+	}
     
 }

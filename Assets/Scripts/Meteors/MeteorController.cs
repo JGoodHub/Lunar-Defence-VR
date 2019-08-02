@@ -14,6 +14,9 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 	public float startingSpeed;
 	private float currentSpeed;
 
+	public float startingHealth;
+	private float currentHealth;
+
     //METHODS
 
 	public void SetTargetPosition (Vector3 newTargetPosition) {
@@ -23,6 +26,17 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
 	void Update () {
 		transform.position += (directionToTarget * currentSpeed) * Time.deltaTime;
+	}
+
+	public void SetAsTarget () {
+		TurretManager.instance.SetTargetMeteor(this);
+		Debug.Log("Target Acquired");
+	}
+	
+	void OnTriggerEnter (Collider other) {
+		if (other.CompareTag("Building")) {
+			PassivateObject();
+		}
 	}
 
 	//INTERFACES
@@ -42,11 +56,6 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 		MeteorManager.instance.PassivatedMeteors.Add(this);
     }
 
-	void OnTriggerEnter (Collider other) {
-		if (other.CompareTag("Building")) {
-			PassivateObject();
-		}
-	}
 
 	//GIZMOS
 	public bool drawDirectionGizmos;

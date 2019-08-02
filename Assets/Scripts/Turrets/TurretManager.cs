@@ -19,8 +19,7 @@ public class TurretManager : MonoBehaviour {
     //VARIABLES
 
 	public TurretController[] turrets = new TurretController[3];
-	delegate void FireCallback(TurretController turret);
-	private MeteorController targetMeteor;
+	[HideInInspector] public MeteorController targetMeteor;
 
 	public GameObject projectilePrefab;
 
@@ -61,7 +60,7 @@ public class TurretManager : MonoBehaviour {
 	public void SetTargetMeteor (MeteorController newTargetMeteor) {
 		targetMeteor = newTargetMeteor;
 		foreach (TurretController turretControl in turrets) {
-			turretControl.TargetMeteor = newTargetMeteor.transform;
+			turretControl.TargetMeteorTransform = newTargetMeteor.transform;
 		}
 	}
 

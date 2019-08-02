@@ -65,8 +65,6 @@ public class MeteorManager : MonoBehaviour {
 		Vector3 startingPosition = new Vector3(Random.Range(-spawnRadius, spawnRadius), spawnCeiling, Random.Range(-spawnRadius, spawnRadius));
 		activatedMeteor.transform.position = startingPosition;
 		activatedMeteor.SetTargetPosition(BuildingManager.instance.GetRandomBuilding().transform.position);
-	
-		TurretManager.instance.SetTargetMeteor(activatedMeteor);
 	}
 
 	//GIZMOS
