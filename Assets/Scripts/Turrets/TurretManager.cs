@@ -19,53 +19,55 @@ public class TurretManager : MonoBehaviour {
     //VARIABLES
 
 	public TurretController[] turrets = new TurretController[3];
+	delegate void FireCallback(TurretController turret);
+	private MeteorController targetMeteor;
 
-	[Header("Dummy Attributes")]
-	public Vector3 dummyStartingPosition;
-	public float dummySpeed;
+	public GameObject projectilePrefab;
 
-	public Transform dummyTransform;
-	private Vector3 dummyDirection;
+	private const int passivatedPoolSize = 50;
+	private List<ProjectileController> activeProjectiles = new List<ProjectileController>();
+	public List<ProjectileController> ActivateProjectiles { get => activeProjectiles; }
 
-	public float dummyRefreshRate;
-	private float dummyRefreshCountdown = 0;
+	private List<ProjectileController> passivatedProjectiles = new List<ProjectileController>();
+	public List<ProjectileController> PassivatedProjectiles { get => passivatedProjectiles; }
 
     //METHODS
 
-	public void InitialiseManager() {
+	public void InitialiseManager () {
+		FillProjectilePool();
+	}
+
+	private void FillProjectilePool () {
+		int passivatedCount = passivatedProjectiles.Count;
+		while (passivatedCount < passivatedPoolSize) {
+			GameObject projectileObject = Instantiate(projectilePrefab, Vector3.zero, Quaternion.identity);
+			projectileObject.transform.parent = this.transform;
+
+			ProjectileController projectileController = projectileObject.GetComponent<ProjectileController>();
+			projectileController.Initialise();
+			projectileController.PassivateObject();
+			passivatedCount++;
+		}
+	}
+
+	public ProjectileController GetPassivatedProjectile () {
+		if (passivatedProjectiles.Count == 0) {
+			FillProjectilePool();
+		}
+
+		return passivatedProjectiles[0];
+	}
+
+	public void SetTargetMeteor (MeteorController newTargetMeteor) {
+		targetMeteor = newTargetMeteor;
 		foreach (TurretController turretControl in turrets) {
-			turretControl.TrackingTarget = dummyTransform;
+			turretControl.TargetMeteor = newTargetMeteor.transform;
 		}
 	}
 
-	void Update () {
-		dummyRefreshCountdown -= Time.deltaTime;
-		if (dummyRefreshCountdown <= 0) {
-			dummyTransform.position = dummyStartingPosition;
-			
-			dummyDirection = new Vector3(1f - Random.Range(0f, 2f), 1f - Random.Range(0f, 2f), 1f - Random.Range(0f, 2f));
-			dummyDirection.Normalize();
-
-			dummyRefreshCountdown = dummyRefreshRate;
-		} else {
-			dummyTransform.position += (dummyDirection * dummySpeed) * Time.deltaTime;
-		}
-
-	}
-
-	//GIZMOS
-	public bool drawDummyGizmos;
-	
+	//GIZMOS	
 	void OnDrawGizmos () {
-		if (drawDummyGizmos) {
-			Gizmos.color = Color.red;
-			Gizmos.DrawSphere(dummyStartingPosition, 1f);
-
-			if (Application.isPlaying) {
-				Gizmos.color = Color.magenta;
-				Gizmos.DrawSphere(dummyTransform.position, 0.5f);
-			}
-		}
+		
 	}    
     
 }

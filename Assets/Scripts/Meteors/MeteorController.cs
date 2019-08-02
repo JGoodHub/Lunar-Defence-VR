@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO ---> Migrate projectile and meteor to superclass
+
 public class MeteorController : MonoBehaviour, IPoolObject {   
 
     //VARIABLES
