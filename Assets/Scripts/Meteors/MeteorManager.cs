@@ -19,7 +19,8 @@ public class MeteorManager : MonoBehaviour {
     //VARIABLES
 
 	public float spawnCeiling;
-	public float spawnRadius;
+	public float spawnInnerRadius;
+	public float spawnOuterRadius;
 	public float spawnInterval;
 
 	public GameObject meteorPrefab;
@@ -62,10 +63,16 @@ public class MeteorManager : MonoBehaviour {
 		MeteorController activatedMeteor = GetPassivatedMeteor();
 		activatedMeteor.ActivateObject();
 
-		Vector3 startingPosition = new Vector3(Random.Range(-spawnRadius, spawnRadius), spawnCeiling, Random.Range(-spawnRadius, spawnRadius));
-		activatedMeteor.transform.position = startingPosition;
+		Vector3 startingPositionOffset = (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized);
+		startingPositionOffset = (startingPositionOffset * spawnInnerRadius) + 
+								 (startingPositionOffset * Random.Range(0f, spawnOuterRadius - spawnInnerRadius));
+
+		Debug.DrawRay(Vector3.up * spawnCeiling, startingPositionOffset, Color.magenta, 1f);
+		
+		activatedMeteor.transform.position = (Vector3.up * spawnCeiling) + startingPositionOffset;
 		activatedMeteor.SetTargetPosition(BuildingManager.instance.GetRandomBuilding().transform.position);
 	}
+	
 
 	//GIZMOS
 	public bool drawSpawnGizmos;
@@ -73,10 +80,33 @@ public class MeteorManager : MonoBehaviour {
 	void OnDrawGizmos () {
 		if (drawSpawnGizmos) {
 			Gizmos.color = Color.green;
-			Gizmos.DrawWireCube(new Vector3(0, spawnCeiling, 0), new Vector3(spawnRadius * 2, 0.01f, spawnRadius * 2));
-			Gizmos.DrawLine(new Vector3(spawnRadius, spawnCeiling, spawnRadius), new Vector3(-spawnRadius, spawnCeiling, -spawnRadius));
-			Gizmos.DrawLine(new Vector3(spawnRadius, spawnCeiling, -spawnRadius), new Vector3(-spawnRadius, spawnCeiling, spawnRadius));
+			
+			DrawGizmosCircle(spawnInnerRadius, 32, Vector3.up * spawnCeiling);
+			DrawGizmosCircle(spawnOuterRadius, 32, Vector3.up * spawnCeiling);
 		}
+	}
+
+	private void DrawGizmosCircle (float radius, int segments, Vector3 center) {
+		float angleStep = 360f / segments;
+		float angleStepAsRad = angleStep * Mathf.Deg2Rad;
+
+		for (float currentAngle = 0; currentAngle < 360; currentAngle += angleStep) {
+			float currentAngleAsRad = currentAngle * Mathf.Deg2Rad;
+
+			Gizmos.DrawLine(
+				new Vector3 (
+					(radius * Mathf.Sin(currentAngleAsRad)) + center.x,
+					(center.y),
+					(radius * Mathf.Cos(currentAngleAsRad)) + center.z
+				),
+				new Vector3 (
+					(radius * Mathf.Sin(currentAngleAsRad + angleStepAsRad)) + center.x,
+					(center.y),
+					(radius * Mathf.Cos(currentAngleAsRad + angleStepAsRad)) + center.z
+				)
+			);
+		}
+
 	}
     
     
