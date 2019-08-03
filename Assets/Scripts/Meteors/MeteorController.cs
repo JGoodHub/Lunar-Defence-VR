@@ -18,6 +18,12 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 	public float startingHealth;
 	private float currentHealth;
 
+	public float rotationSpeedMax;
+	public float rotationSpeedMin;
+	public Transform modelTransform;
+	private float currentRotationSpeed;
+	private Vector3 rotationAxis;
+
     //METHODS
 
 	public void SetTargetPosition (Vector3 newTargetPosition) {
@@ -27,6 +33,7 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
 	void Update () {
 		transform.position += (directionToTarget * currentSpeed) * Time.deltaTime;
+		modelTransform.Rotate(rotationAxis, currentRotationSpeed * Time.deltaTime);
 	}
 
 	public void SetAsTarget () {
@@ -44,10 +51,25 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 		}
 	}
 
+	public void Damage (int amount) {
+		currentHealth -= amount;
+
+		if (currentHealth <= 0) {
+			//TODO ---> Create explosion when killed
+			//TODO ---> Add to the players score
+
+			PassivateObject();
+		}
+	}
+
 	//INTERFACES
 	
 	public void ActivateObject() {
 		currentSpeed = startingSpeed;
+		currentHealth = startingHealth;
+
+		currentRotationSpeed = Random.Range(rotationSpeedMin, rotationSpeedMax);
+		rotationAxis = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
 
 		MeteorManager.instance.ActivateMeteors.Add(this);
 		MeteorManager.instance.PassivatedMeteors.Remove(this);
@@ -55,22 +77,25 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
     public void PassivateObject() {
 		currentSpeed = 0;
+		currentRotationSpeed = 0;
 		transform.position = new Vector3(0, -1000, 0);
 
 		MeteorManager.instance.ActivateMeteors.Remove(this);
 		MeteorManager.instance.PassivatedMeteors.Add(this);
-		
-		TurretManager.instance.SetTurretsTarget(null);
     }
-
 
 	//GIZMOS
 	public bool drawDirectionGizmos;
-
+	public bool drawRotationGizmos;
 	void OnDrawGizmos () {
 		if (drawDirectionGizmos) {
 			Gizmos.color = Color.red;
 			Gizmos.DrawRay(transform.position, directionToTarget * 10f);
+		}
+
+		if (drawRotationGizmos && Application.isPlaying) {
+			Gizmos.color = Color.cyan;
+			Gizmos.DrawLine(transform.position - rotationAxis * 10f, transform.position + rotationAxis * 10f);
 		}
 	}
 

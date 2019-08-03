@@ -3755,7 +3755,7 @@ MonoBehaviour:
   spawnCeiling: 400
   spawnInnerRadius: 300
   spawnOuterRadius: 400
-  spawnInterval: 100
+  spawnInterval: 10
   meteorPrefab: {fileID: 4329830597194686033, guid: 79ae12106fc46924db03077b08c1fcfd,
     type: 3}
   drawSpawnGizmos: 0

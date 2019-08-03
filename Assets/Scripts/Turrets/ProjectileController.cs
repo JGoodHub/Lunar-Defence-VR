@@ -13,6 +13,8 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 
 	private Collider projectileCollider;
 
+	public GameObject explosionPrefab;
+
     //METHODS
 
 	public void Initialise () {
@@ -46,7 +48,19 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag("Meteor")) {
-			Debug.Log("Hit Meteor");
+			MeteorController meteor = other.GetComponent<MeteorController>();
+			meteor.Damage(1);
+
+			GameObject explosionObject = Instantiate(
+				explosionPrefab, 
+				transform.position, 
+				Quaternion.LookRotation(transform.position - other.transform.position)
+			);
+
+			explosionObject.transform.SetParent(other.transform);
+
+			Destroy(explosionObject, 3f);
+
 			PassivateObject();
 		}
 	}
