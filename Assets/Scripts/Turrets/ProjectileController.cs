@@ -46,6 +46,7 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag("Meteor")) {
+			Debug.Log("Hit Meteor");
 			PassivateObject();
 		}
 	}

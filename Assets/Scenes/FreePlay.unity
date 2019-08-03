@@ -2187,7 +2187,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.5
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -3538,9 +3538,9 @@ MonoBehaviour:
   - {fileID: 1478901570041929536}
   - {fileID: 1837062114}
   - {fileID: 1980101708}
-  targetMeteor: {fileID: 0}
   projectilePrefab: {fileID: 4401485586456857312, guid: 9ec5ff8869e8d584098027fc96b98283,
     type: 3}
+  targetMeteor: {fileID: 0}
 --- !u!1 &1804138246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3755,10 +3755,10 @@ MonoBehaviour:
   spawnCeiling: 400
   spawnInnerRadius: 300
   spawnOuterRadius: 400
-  spawnInterval: 5
+  spawnInterval: 100
   meteorPrefab: {fileID: 4329830597194686033, guid: 79ae12106fc46924db03077b08c1fcfd,
     type: 3}
-  drawSpawnGizmos: 1
+  drawSpawnGizmos: 0
 --- !u!1001 &1894640443
 PrefabInstance:
   m_ObjectHideFlags: 0

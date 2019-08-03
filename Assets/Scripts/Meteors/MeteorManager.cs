@@ -66,13 +66,17 @@ public class MeteorManager : MonoBehaviour {
 		Vector3 startingPositionOffset = (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized);
 		startingPositionOffset = (startingPositionOffset * spawnInnerRadius) + 
 								 (startingPositionOffset * Random.Range(0f, spawnOuterRadius - spawnInnerRadius));
-
-		Debug.DrawRay(Vector3.up * spawnCeiling, startingPositionOffset, Color.magenta, 1f);
 		
 		activatedMeteor.transform.position = (Vector3.up * spawnCeiling) + startingPositionOffset;
 		activatedMeteor.SetTargetPosition(BuildingManager.instance.GetRandomBuilding().transform.position);
-	}
-	
+
+		if (drawSpawnGizmos) {
+			Debug.DrawRay(Vector3.up * spawnCeiling, startingPositionOffset, Color.magenta, 1f);
+		}
+
+		//Auto set players target (used for debug)
+		//TurretManager.instance.SetTurretsTarget(activatedMeteor);
+	}	
 
 	//GIZMOS
 	public bool drawSpawnGizmos;

@@ -10,6 +10,7 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
 	private Vector3 targetPosition;
 	private Vector3 directionToTarget;
+	public Vector3 DirectionToTarget { get => directionToTarget; }
 
 	public float startingSpeed;
 	private float currentSpeed;
@@ -29,8 +30,12 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 	}
 
 	public void SetAsTarget () {
-		TurretManager.instance.SetTargetMeteor(this);
+		TurretManager.instance.SetTurretsTarget(this);
 		Debug.Log("Target Acquired");
+	}
+
+	public Vector3 MeteorVelocity () {
+		return directionToTarget * currentSpeed;
 	}
 	
 	void OnTriggerEnter (Collider other) {
@@ -54,6 +59,8 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
 		MeteorManager.instance.ActivateMeteors.Remove(this);
 		MeteorManager.instance.PassivatedMeteors.Add(this);
+		
+		TurretManager.instance.SetTurretsTarget(null);
     }
 
 

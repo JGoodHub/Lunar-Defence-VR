@@ -19,9 +19,12 @@ public class TurretManager : MonoBehaviour {
     //VARIABLES
 
 	public TurretController[] turrets = new TurretController[3];
-	[HideInInspector] public MeteorController targetMeteor;
-
+	
 	public GameObject projectilePrefab;
+	private float projectileSpeed;
+	public float ProjectileSpeed { get => projectileSpeed; }
+
+	[HideInInspector] public MeteorController targetMeteor;
 
 	private const int passivatedPoolSize = 50;
 	private List<ProjectileController> activeProjectiles = new List<ProjectileController>();
@@ -34,6 +37,8 @@ public class TurretManager : MonoBehaviour {
 
 	public void InitialiseManager () {
 		FillProjectilePool();
+
+		projectileSpeed = projectilePrefab.GetComponent<ProjectileController>().startingSpeed;
 	}
 
 	private void FillProjectilePool () {
@@ -57,10 +62,10 @@ public class TurretManager : MonoBehaviour {
 		return passivatedProjectiles[0];
 	}
 
-	public void SetTargetMeteor (MeteorController newTargetMeteor) {
+	public void SetTurretsTarget (MeteorController newTargetMeteor) {
 		targetMeteor = newTargetMeteor;
 		foreach (TurretController turretControl in turrets) {
-			turretControl.TargetMeteorTransform = newTargetMeteor.transform;
+			turretControl.TargetMeteor = newTargetMeteor;
 		}
 	}
 
