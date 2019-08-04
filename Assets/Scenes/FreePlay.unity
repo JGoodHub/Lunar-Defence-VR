@@ -3540,7 +3540,6 @@ MonoBehaviour:
   - {fileID: 1980101708}
   projectilePrefab: {fileID: 4401485586456857312, guid: 9ec5ff8869e8d584098027fc96b98283,
     type: 3}
-  targetMeteor: {fileID: 0}
 --- !u!1 &1804138246
 GameObject:
   m_ObjectHideFlags: 0
@@ -3755,7 +3754,7 @@ MonoBehaviour:
   spawnCeiling: 500
   spawnInnerRadius: 450
   spawnOuterRadius: 700
-  spawnInterval: 1
+  spawnInterval: 7
   meteorPrefab: {fileID: 4329830597194686033, guid: 79ae12106fc46924db03077b08c1fcfd,
     type: 3}
   drawSpawnGizmos: 1

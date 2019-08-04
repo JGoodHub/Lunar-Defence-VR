@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingManager : MonoBehaviour {
+public class HabitatManager : MonoBehaviour {
 
     //SINGLETON PATTERN
 
-    public static BuildingManager instance = null;
+    public static HabitatManager instance = null;
 	
 	void Awake () {
 		if (instance == null) {

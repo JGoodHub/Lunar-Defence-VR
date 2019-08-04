@@ -22,6 +22,10 @@ public class UIManager : MonoBehaviour {
 	[Header("Targeting Elements")]
 	public RectTransform targeterTransform;
 
+	[Header("Habitat Health Elements")]
+	public GameObject[] healthBarContainers;
+	public Image[] healthBarFills;
+
     //METHODS
 
 	void Update () {
@@ -29,15 +33,19 @@ public class UIManager : MonoBehaviour {
 	}
     
 	private void UpdateTargeterPosition () {
-		if (TurretManager.instance.targetMeteor == null) {
+		if (TurretManager.instance.TargetMeteor == null) {
 			targeterTransform.position = new Vector3(0, -100, 0);
 		} else {
-			Vector3 targetDirection = TurretManager.instance.targetMeteor.transform.position - Camera.main.transform.position;		
+			Vector3 targetDirection = TurretManager.instance.TargetMeteor.transform.position - Camera.main.transform.position;		
 			targeterTransform.position = Camera.main.transform.position + (targetDirection.normalized * 5f);
 			targeterTransform.forward = Camera.main.transform.forward;
 
 			//TODO ---> Have the targeter resize based on distance to the meteor
 		}
+	}
+
+	public void DisplayHealthForHabitat (int habID) {
+		
 	}
     
     

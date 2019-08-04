@@ -59,6 +59,10 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 		currentHealth -= amount;
 
 		if (currentHealth <= 0) {
+			if (TurretManager.instance.TargetMeteor == this) {
+				TurretManager.instance.SetTurretsTarget(null);
+			}
+
 			GameObject explosionClone = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 			explosionClone.transform.SetParent(MeteorManager.instance.transform);
 			Destroy(explosionClone, 10f);

@@ -68,7 +68,7 @@ public class MeteorManager : MonoBehaviour {
 								 (startingPositionOffset * Random.Range(0f, spawnOuterRadius - spawnInnerRadius));
 		
 		activatedMeteor.transform.position = (Vector3.up * spawnCeiling) + startingPositionOffset;
-		activatedMeteor.SetTargetPosition(BuildingManager.instance.GetRandomBuilding().transform.position);
+		activatedMeteor.SetTargetPosition(HabitatManager.instance.GetRandomBuilding().transform.position);
 
 		if (drawSpawnGizmos) {
 			Debug.DrawRay(Vector3.up * spawnCeiling, startingPositionOffset, Color.magenta, 1f);

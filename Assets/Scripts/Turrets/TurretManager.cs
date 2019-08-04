@@ -24,7 +24,8 @@ public class TurretManager : MonoBehaviour {
 	private float projectileSpeed;
 	public float ProjectileSpeed { get => projectileSpeed; }
 
-	[HideInInspector] public MeteorController targetMeteor;
+	private MeteorController targetMeteor;
+	public MeteorController TargetMeteor { get => targetMeteor; }
 
 	private const int passivatedPoolSize = 50;
 	private List<ProjectileController> activeProjectiles = new List<ProjectileController>();
