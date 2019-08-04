@@ -8,11 +8,11 @@ public class UIManager : MonoBehaviour {
 
     //SINGLETON PATTERN
 
-    public static UIManager instance = null;
+    public static UIManager singleton = null;
 	
 	void Awake () {
-		if (instance == null) {
-			instance = this;
+		if (singleton == null) {
+			singleton = this;
 		} else {
 			Destroy(gameObject);
 		}
@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour {
 
 	//Trigger the game to restart
 	public void RestartGameTrigger () {
-		GameManager.instance.RestartGame();
+		GameManager.singleton.RestartGame();
 	}
 
 	//Unhide the game over panel
@@ -61,10 +61,10 @@ public class UIManager : MonoBehaviour {
     
 	//Update the targeters position to hover over the target meteor
 	private void UpdateTargeterPosition () {
-		if (TurretManager.instance.TargetMeteor == null) {
+		if (TurretManager.singleton.TargetMeteor == null) {
 			targeterTransform.position = new Vector3(0, -100, 0);
 		} else {
-			Vector3 targetDirection = TurretManager.instance.TargetMeteor.transform.position - Camera.main.transform.position;		
+			Vector3 targetDirection = TurretManager.singleton.TargetMeteor.transform.position - Camera.main.transform.position;		
 			targeterTransform.position = Camera.main.transform.position + (targetDirection.normalized * 5f);
 			targeterTransform.forward = Camera.main.transform.forward;
 
@@ -75,7 +75,7 @@ public class UIManager : MonoBehaviour {
 	//Display the health overlay for a given habitat
 	public void DisplayHealthForHabitat (int habID) {
 		healthBarContainers[habID].SetActive(true);
-		healthBarFills[habID].fillAmount = HabitatManager.instance.habitats[habID].GetHealthPercentage();
+		healthBarFills[habID].fillAmount = HabitatManager.singleton.habitats[habID].GetHealthPercentage();
 	}
 
 	//Hide the health overlay for a given habitat
@@ -88,10 +88,10 @@ public class UIManager : MonoBehaviour {
 		//TODO ---> Replace with string builder for better efficiency
 		string output = "";
 
-		output += "Best: " + ScoreManager.instance.LocalHighscore + "\n";
+		output += "Best: " + ScoreManager.singleton.LocalHighscore + "\n";
 		output += "------------------\n";
-		output += "Score: " + ScoreManager.instance.CurrentScore + "\n";
-		output += "Kills: " + ScoreManager.instance.MeteorsDestroyed;
+		output += "Score: " + ScoreManager.singleton.CurrentScore + "\n";
+		output += "Kills: " + ScoreManager.singleton.MeteorsDestroyed;
 
 		scoreBoardText.SetText(output);
 	}

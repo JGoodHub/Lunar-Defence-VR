@@ -6,11 +6,11 @@ public class TurretManager : MonoBehaviour {
 
     //SINGLETON PATTERN
 
-    public static TurretManager instance = null;
+    public static TurretManager singleton = null;
 	
 	void Awake () {
-		if (instance == null) {
-			instance = this;
+		if (singleton == null) {
+			singleton = this;
 		} else {
 			Destroy(gameObject);
 		}
@@ -73,7 +73,7 @@ public class TurretManager : MonoBehaviour {
 
 	//Set the target for the turrets to fire at, or disable targeting if the games over
 	public void SetTurretsTarget (MeteorController newTargetMeteor) {
-		if (GameManager.instance.gameOver == true) {
+		if (GameManager.singleton.gameOver == true) {
 			newTargetMeteor = null;
 		}
 

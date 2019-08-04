@@ -25,7 +25,7 @@ public class TurretController : MonoBehaviour {
 			Vector3 leadingTargetPosition = CalculateLeadingTarget(turretTransform.position,
 																   targetMeteor.transform.position,
 																   targetMeteor.MeteorVelocity(),
-																   TurretManager.instance.ProjectileSpeed);
+																   TurretManager.singleton.ProjectileSpeed);
 			turretTransform.LookAt(leadingTargetPosition);
 
 			//Fire with a slight time variance to avoid repeating patterns
@@ -59,7 +59,7 @@ public class TurretController : MonoBehaviour {
 
 	//Fire a projectile in the current turret direction
 	private void FireProjectile () {
-		ProjectileController projectileInstance = TurretManager.instance.GetPassivatedProjectile();
+		ProjectileController projectileInstance = TurretManager.singleton.GetPassivatedProjectile();
 		projectileInstance.ActivateObject();
 		
 		projectileInstance.transform.position = turretTransform.position;

@@ -47,7 +47,7 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
 	//Set this meteor at the turrets target
 	public void SetAsTarget () {
-		TurretManager.instance.SetTurretsTarget(this);
+		TurretManager.singleton.SetTurretsTarget(this);
 	}
 
 	//Get this meteors velocity per second
@@ -62,7 +62,7 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
 			//If this meteor destroyed the habitat reduce the number remaining
 			if (habitat.Damage(1) == true) {
-				HabitatManager.instance.DecrementHabitatsRemaining();
+				HabitatManager.singleton.DecrementHabitatsRemaining();
 			}
 			
 			Damage(currentHealth);
@@ -75,12 +75,12 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
 		if (currentHealth <= 0) {
 			//If this meteor WAS the target, reset the turrets new target
-			if (TurretManager.instance.TargetMeteor == this) {
-				TurretManager.instance.SetTurretsTarget(null);
+			if (TurretManager.singleton.TargetMeteor == this) {
+				TurretManager.singleton.SetTurretsTarget(null);
 			}
 
 			GameObject explosionClone = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-			explosionClone.transform.SetParent(MeteorManager.instance.transform);
+			explosionClone.transform.SetParent(MeteorManager.singleton.transform);
 			Destroy(explosionClone, 10f);
 			
 			PassivateObject();
@@ -100,8 +100,8 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 		currentRotationSpeed = Random.Range(rotationSpeedMin, rotationSpeedMax);
 		rotationAxis = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
 
-		MeteorManager.instance.ActivateMeteors.Add(this);
-		MeteorManager.instance.PassivatedMeteors.Remove(this);
+		MeteorManager.singleton.ActivateMeteors.Add(this);
+		MeteorManager.singleton.PassivatedMeteors.Remove(this);
     }
 
 	//Passivate the pooled meteor instance
@@ -110,8 +110,8 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 		currentRotationSpeed = 0;
 		transform.position = new Vector3(0, -1000, 0);
 
-		MeteorManager.instance.ActivateMeteors.Remove(this);
-		MeteorManager.instance.PassivatedMeteors.Add(this);
+		MeteorManager.singleton.ActivateMeteors.Remove(this);
+		MeteorManager.singleton.PassivatedMeteors.Add(this);
     }
 
 	//GIZMOS

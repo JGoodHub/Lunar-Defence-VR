@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour {
 
     //SINGLETON PATTERN
 
-    public static GameManager instance = null;
+    public static GameManager singleton = null;
 	
 	void Awake () {
-		if (instance == null) {
-			instance = this;
+		if (singleton == null) {
+			singleton = this;
 		} else {
 			Destroy(gameObject);
 		}
@@ -26,18 +26,18 @@ public class GameManager : MonoBehaviour {
 
 	//Initialise all the managers in the correct order
 	void Start () {
-		TurretManager.instance.InitialiseManager();
-		MeteorManager.instance.InitialiseManager();
-		HabitatManager.instance.InitialiseManager();
-		ScoreManager.instance.InitialiseManager();
-		UIManager.instance.InitialiseManager();
+		TurretManager.singleton.InitialiseManager();
+		MeteorManager.singleton.InitialiseManager();
+		HabitatManager.singleton.InitialiseManager();
+		ScoreManager.singleton.InitialiseManager();
+		UIManager.singleton.InitialiseManager();
 	}
 
 	//Trigger the end of the game
 	public void EndGame () {
 		gameOver = true;
-		UIManager.instance.ShowGameOverPanel();
-		ScoreManager.instance.SaveLocalHighscore();
+		UIManager.singleton.ShowGameOverPanel();
+		ScoreManager.singleton.SaveLocalHighscore();
 	}
 	
 	//Restart the game

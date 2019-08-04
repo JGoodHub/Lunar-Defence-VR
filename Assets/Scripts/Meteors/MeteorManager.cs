@@ -6,11 +6,11 @@ public class MeteorManager : MonoBehaviour {
 
     //SINGLETON PATTERN
 
-    public static MeteorManager instance = null;
+    public static MeteorManager singleton = null;
 	
 	void Awake () {
-		if (instance == null) {
-			instance = this;
+		if (singleton == null) {
+			singleton = this;
 		} else {
 			Destroy(gameObject);
 		}
@@ -82,7 +82,7 @@ public class MeteorManager : MonoBehaviour {
 		activatedMeteor.transform.position = (Vector3.up * spawnCeiling) + startingPositionOffset;
 
 		//Target a random habitat
-		activatedMeteor.SetTargetPosition(HabitatManager.instance.GetRandomHabitat().transform.position);
+		activatedMeteor.SetTargetPosition(HabitatManager.singleton.GetRandomHabitat().transform.position);
 
 		if (drawSpawnGizmos) {
 			Debug.DrawRay(Vector3.up * spawnCeiling, startingPositionOffset, Color.magenta, 1f);

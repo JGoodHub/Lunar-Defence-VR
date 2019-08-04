@@ -6,11 +6,11 @@ public class HabitatManager : MonoBehaviour {
 
     //SINGLETON PATTERN
 
-    public static HabitatManager instance = null;
+    public static HabitatManager singleton = null;
 	
 	void Awake () {
-		if (instance == null) {
-			instance = this;
+		if (singleton == null) {
+			singleton = this;
 		} else {
 			Destroy(gameObject);
 		}
@@ -48,7 +48,7 @@ public class HabitatManager : MonoBehaviour {
 		habitatsRemaining--;
 
 		if (habitatsRemaining <= 0) {
-			GameManager.instance.EndGame();
+			GameManager.singleton.EndGame();
 		}
 	}
     

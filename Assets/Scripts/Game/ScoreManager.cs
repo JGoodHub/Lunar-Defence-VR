@@ -7,11 +7,11 @@ public class ScoreManager : MonoBehaviour {
     
     //SINGLETON PATTERN
 
-    public static ScoreManager instance = null;
+    public static ScoreManager singleton = null;
 	
 	void Awake () {
-		if (instance == null) {
-			instance = this;
+		if (singleton == null) {
+			singleton = this;
 		} else {
 			Destroy(gameObject);
 		}

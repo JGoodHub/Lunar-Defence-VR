@@ -26,7 +26,7 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 	void Update () {
 		transform.position += (transform.forward * currentSpeed) * Time.deltaTime;
 
-		if (transform.position.y >= MeteorManager.instance.spawnCeiling) {
+		if (transform.position.y >= MeteorManager.singleton.spawnCeiling) {
 			PassivateObject();
 		}
 	}
@@ -36,8 +36,8 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 		currentSpeed = startingSpeed;
 		projectileCollider.enabled = true;
 
-		TurretManager.instance.ActivateProjectiles.Add(this);
-		TurretManager.instance.PassivatedProjectiles.Remove(this);
+		TurretManager.singleton.ActivateProjectiles.Add(this);
+		TurretManager.singleton.PassivatedProjectiles.Remove(this);
     }
 
 	//Passivate the projectile and move it to the pooled set
@@ -48,8 +48,8 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 		projectileCollider.enabled = false;
 		transform.position = new Vector3(0, -900, 0);
 
-		TurretManager.instance.ActivateProjectiles.Remove(this);
-		TurretManager.instance.PassivatedProjectiles.Add(this);
+		TurretManager.singleton.ActivateProjectiles.Remove(this);
+		TurretManager.singleton.PassivatedProjectiles.Add(this);
     }
 
 	//Damage the meteor if hit and create an explosion then passivate
@@ -59,9 +59,9 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 
 			//If this shot killed the meteor increase and update the score values appropriately
 			if (meteor.Damage(1) == true) {	
-				ScoreManager.instance.IncreaseScore(5);
-				ScoreManager.instance.IncrementMeteorsDestroyed();
-				UIManager.instance.UpdateCurrentScores();
+				ScoreManager.singleton.IncreaseScore(5);
+				ScoreManager.singleton.IncrementMeteorsDestroyed();
+				UIManager.singleton.UpdateCurrentScores();
 			}
 
 			GameObject explosionObject = Instantiate(
