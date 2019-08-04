@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
@@ -26,9 +27,14 @@ public class UIManager : MonoBehaviour {
 	public GameObject[] healthBarContainers;
 	public Image[] healthBarFills;
 
+	[Header("Score Board Elements")]
+	public TextMeshProUGUI scoreBoardText;
+
     //METHODS
 
 	public void InitialiseManager () {
+		UpdateCurrentScores();
+
 		for (int i = 0; i < healthBarContainers.Length; i++) {
 			HideHealthForHabitat(i);
 		}
@@ -57,6 +63,18 @@ public class UIManager : MonoBehaviour {
 
 	public void HideHealthForHabitat (int habID) {
 		healthBarContainers[habID].SetActive(false);
+	}
+
+	public void UpdateCurrentScores () {
+		//TODO ---> Replace with string builder for better efficiency
+		string output = "";
+
+		output += "Best: " + ScoreManager.instance.LocalHighscore + "\n";
+		output += "------------------\n";
+		output += "Score: " + ScoreManager.instance.CurrentScore + "\n";
+		output += "Kills: " + ScoreManager.instance.MeteorsDestroyed;
+
+		scoreBoardText.SetText(output);
 	}
     
     

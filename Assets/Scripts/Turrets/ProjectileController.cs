@@ -49,7 +49,12 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag("Meteor")) {
 			MeteorController meteor = other.GetComponent<MeteorController>();
-			meteor.Damage(1);
+
+			if (meteor.Damage(1) == true) {	
+				ScoreManager.instance.IncreaseScore(5);
+				ScoreManager.instance.IncrementMeteorsDestroyed();
+				UIManager.instance.UpdateCurrentScores();
+			}
 
 			GameObject explosionObject = Instantiate(
 				explosionPrefab, 

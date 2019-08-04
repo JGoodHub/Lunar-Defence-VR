@@ -55,7 +55,7 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 		}
 	}
 
-	public void Damage (int amount) {
+	public bool Damage (int amount) {
 		currentHealth -= amount;
 
 		if (currentHealth <= 0) {
@@ -70,6 +70,10 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 			//TODO ---> Add to the players score
 
 			PassivateObject();
+
+			return true;
+		} else {
+			return false;
 		}
 	}
 
