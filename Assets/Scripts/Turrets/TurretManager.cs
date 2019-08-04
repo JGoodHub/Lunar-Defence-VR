@@ -64,15 +64,14 @@ public class TurretManager : MonoBehaviour {
 	}
 
 	public void SetTurretsTarget (MeteorController newTargetMeteor) {
-		targetMeteor = newTargetMeteor;
-		foreach (TurretController turretControl in turrets) {
-			turretControl.TargetMeteor = newTargetMeteor;
+		if (GameManager.instance.gameOver == true) {
+			newTargetMeteor = null;
 		}
-	}
 
-	//GIZMOS	
-	void OnDrawGizmos () {
-		
-	}    
+		targetMeteor = newTargetMeteor;
+			foreach (TurretController turretControl in turrets) {
+				turretControl.TargetMeteor = newTargetMeteor;
+			}
+	} 
     
 }

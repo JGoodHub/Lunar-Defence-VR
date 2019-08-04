@@ -26,7 +26,7 @@ public class HabitatController : MonoBehaviour {
 		return (float)currentHealth / startingHealth;
 	}
 
-	public void Damage (int amount) {
+	public bool Damage (int amount) {
 		currentHealth -= amount;
 
 		if (currentHealth <= 0) {
@@ -36,7 +36,14 @@ public class HabitatController : MonoBehaviour {
 			GameObject shatterClone = Instantiate(shatterEffectPrefab, transform.position, Quaternion.identity);
 			Destroy(shatterClone, 5f);
 			
-			isDestroyed = true;
+			if (isDestroyed == true) {
+				return false;
+			} else {
+				isDestroyed = true;
+				return true;
+			}
+		} else {
+			return false;
 		}
 
 	}

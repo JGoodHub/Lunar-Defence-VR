@@ -49,7 +49,10 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag("Building")) {
 			HabitatController habitat = other.GetComponentInParent<HabitatController>();
-			habitat.Damage(1);
+
+			if (habitat.Damage(1) == true) {
+				HabitatManager.instance.DecrementHabitatsRemaining();
+			}
 			
 			Damage(currentHealth);
 		}

@@ -30,6 +30,9 @@ public class UIManager : MonoBehaviour {
 	[Header("Score Board Elements")]
 	public TextMeshProUGUI scoreBoardText;
 
+	[Header("Game Over Panel Elements")]
+	public GameObject gameOverPanel;
+
     //METHODS
 
 	public void InitialiseManager () {
@@ -42,6 +45,14 @@ public class UIManager : MonoBehaviour {
 
 	void Update () {
 		UpdateTargeterPosition();	
+	}
+
+	public void RestartGameTrigger () {
+		GameManager.instance.RestartGame();
+	}
+
+	public void ShowGameOverPanel () {
+		gameOverPanel.SetActive(true);
 	}
     
 	private void UpdateTargeterPosition () {

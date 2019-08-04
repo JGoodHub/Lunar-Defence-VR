@@ -22,6 +22,7 @@ public class MeteorManager : MonoBehaviour {
 	public float spawnInnerRadius;
 	public float spawnOuterRadius;
 	public float spawnInterval;
+	public float spawnDelay;
 
 	public GameObject meteorPrefab;
 
@@ -36,7 +37,7 @@ public class MeteorManager : MonoBehaviour {
 
 	public void InitialiseManager () {
 		FillMeteorPool();
-		InvokeRepeating("HurlMeteor", 10f, spawnInterval);
+		InvokeRepeating("HurlMeteor", spawnDelay, spawnInterval);
 	}
 
 	private void FillMeteorPool () {
@@ -73,7 +74,6 @@ public class MeteorManager : MonoBehaviour {
 		if (drawSpawnGizmos) {
 			Debug.DrawRay(Vector3.up * spawnCeiling, startingPositionOffset, Color.magenta, 1f);
 		}
-
 	}
 
 	//GIZMOS
