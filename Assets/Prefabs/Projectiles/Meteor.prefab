@@ -81,7 +81,10 @@ MonoBehaviour:
   rotationSpeedMax: -90
   rotationSpeedMin: 90
   modelTransform: {fileID: 8749387082773055162}
+  explosionPrefab: {fileID: 9085274731491148273, guid: 97875feb20d43dd4696dcbaeada37303,
+    type: 3}
   drawDirectionGizmos: 0
+  drawRotationGizmos: 0
 --- !u!114 &6305499574201936326
 MonoBehaviour:
   m_ObjectHideFlags: 0

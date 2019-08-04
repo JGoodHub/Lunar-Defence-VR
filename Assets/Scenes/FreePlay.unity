@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.5019608}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3752,13 +3752,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e059cafb856434fbf8106f215ea3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCeiling: 400
-  spawnInnerRadius: 300
-  spawnOuterRadius: 400
-  spawnInterval: 10
+  spawnCeiling: 500
+  spawnInnerRadius: 450
+  spawnOuterRadius: 700
+  spawnInterval: 1
   meteorPrefab: {fileID: 4329830597194686033, guid: 79ae12106fc46924db03077b08c1fcfd,
     type: 3}
-  drawSpawnGizmos: 0
+  drawSpawnGizmos: 1
 --- !u!1001 &1894640443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4642,7 +4642,7 @@ PrefabInstance:
     - target: {fileID: 4071603211235006986, guid: e3f2c2ee1349df642912edac42d8393b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8990617
+      value: 0.8990616
       objectReference: {fileID: 0}
     - target: {fileID: 4071603211235006986, guid: e3f2c2ee1349df642912edac42d8393b,
         type: 3}

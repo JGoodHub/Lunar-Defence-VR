@@ -25,7 +25,7 @@ public class MeteorManager : MonoBehaviour {
 
 	public GameObject meteorPrefab;
 
-	private const int passivatedPoolSize = 10;
+	private const int passivatedPoolSize = 30;
 	private List<MeteorController> activeMeteors = new List<MeteorController>();
 	public List<MeteorController> ActivateMeteors { get => activeMeteors; }
 
@@ -36,7 +36,7 @@ public class MeteorManager : MonoBehaviour {
 
 	public void InitialiseManager () {
 		FillMeteorPool();
-		InvokeRepeating("HurlMeteor", 0, spawnInterval);
+		InvokeRepeating("HurlMeteor", 10f, spawnInterval);
 	}
 
 	private void FillMeteorPool () {
@@ -74,9 +74,7 @@ public class MeteorManager : MonoBehaviour {
 			Debug.DrawRay(Vector3.up * spawnCeiling, startingPositionOffset, Color.magenta, 1f);
 		}
 
-		//Auto set players target (used for debug)
-		//TurretManager.instance.SetTurretsTarget(activatedMeteor);
-	}	
+	}
 
 	//GIZMOS
 	public bool drawSpawnGizmos;

@@ -22,6 +22,12 @@ public class BuildingManager : MonoBehaviour {
 
     //METHODS
 
+	public void InitialiseManager () {
+		foreach (HabitatController hab in buildings) {
+			hab.InitialiseController();
+		}
+	}
+
 	public HabitatController GetRandomBuilding () {
 		if (buildings.Length > 0) {
 			int buildingIndex = Random.Range(0, buildings.Length);

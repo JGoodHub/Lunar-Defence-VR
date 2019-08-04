@@ -29,7 +29,7 @@ public class TurretController : MonoBehaviour {
 				fireCooldown = rateOfFire + Random.Range(-0.15f, 0.15f);
 			}
 		} else {
-			turretTransform.LookAt(Vector3.up);
+			turretTransform.LookAt(transform.position + transform.up);
 		}
 	}
 

@@ -9,14 +9,33 @@ public class HabitatController : MonoBehaviour {
 	public int startingHealth;
 	private int currentHealth;
 
+	public GameObject intactModel;
+	public GameObject destroyedModel;
+	public GameObject shatterEffectPrefab;
+
+	private bool isDestroyed = false;
+	public bool IsDestroyed { get => isDestroyed; }
+
     //METHODS
     
 	public void InitialiseController () {
 		currentHealth = startingHealth;
 	}
 
-	public void Log () {
-		Debug.Log("Message");
+	public void Damage (int amount) {
+		currentHealth -= amount;
+
+		if (currentHealth <= 0) {
+			intactModel.SetActive(false);
+			destroyedModel.SetActive(true);
+
+			GameObject shatterClone = Instantiate(shatterEffectPrefab, transform.position, Quaternion.identity);
+			Destroy(shatterClone, 5f);
+			
+			isDestroyed = true;
+		}
+
 	}
+	
     
 }

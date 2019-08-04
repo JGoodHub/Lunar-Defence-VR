@@ -15,14 +15,16 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 	public float startingSpeed;
 	private float currentSpeed;
 
-	public float startingHealth;
-	private float currentHealth;
+	public int startingHealth;
+	private int currentHealth;
 
 	public float rotationSpeedMax;
 	public float rotationSpeedMin;
 	public Transform modelTransform;
 	private float currentRotationSpeed;
 	private Vector3 rotationAxis;
+
+	public GameObject explosionPrefab;
 
     //METHODS
 
@@ -38,7 +40,6 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 
 	public void SetAsTarget () {
 		TurretManager.instance.SetTurretsTarget(this);
-		Debug.Log("Target Acquired");
 	}
 
 	public Vector3 MeteorVelocity () {
@@ -47,7 +48,10 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 	
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag("Building")) {
-			PassivateObject();
+			HabitatController habitat = other.GetComponentInParent<HabitatController>();
+			habitat.Damage(1);
+			
+			Damage(currentHealth);
 		}
 	}
 
@@ -55,7 +59,10 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 		currentHealth -= amount;
 
 		if (currentHealth <= 0) {
-			//TODO ---> Create explosion when killed
+			GameObject explosionClone = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+			explosionClone.transform.SetParent(MeteorManager.instance.transform);
+			Destroy(explosionClone, 10f);
+			
 			//TODO ---> Add to the players score
 
 			PassivateObject();

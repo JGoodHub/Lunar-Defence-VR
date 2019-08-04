@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		TurretManager.instance.InitialiseManager();
 		MeteorManager.instance.InitialiseManager();
+		BuildingManager.instance.InitialiseManager();
 	}
     
     
