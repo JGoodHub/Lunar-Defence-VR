@@ -22,6 +22,10 @@ public class HabitatController : MonoBehaviour {
 		currentHealth = startingHealth;
 	}
 
+	public float GetHealthPercentage() {
+		return (float)currentHealth / startingHealth;
+	}
+
 	public void Damage (int amount) {
 		currentHealth -= amount;
 

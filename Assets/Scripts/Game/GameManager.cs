@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour {
 		TurretManager.instance.InitialiseManager();
 		MeteorManager.instance.InitialiseManager();
 		HabitatManager.instance.InitialiseManager();
+		UIManager.instance.InitialiseManager();
 	}
     
     

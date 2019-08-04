@@ -28,8 +28,14 @@ public class UIManager : MonoBehaviour {
 
     //METHODS
 
+	public void InitialiseManager () {
+		for (int i = 0; i < healthBarContainers.Length; i++) {
+			HideHealthForHabitat(i);
+		}
+	}
+
 	void Update () {
-		UpdateTargeterPosition();
+		UpdateTargeterPosition();	
 	}
     
 	private void UpdateTargeterPosition () {
@@ -45,7 +51,12 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void DisplayHealthForHabitat (int habID) {
-		
+		healthBarContainers[habID].SetActive(true);
+		healthBarFills[habID].fillAmount = HabitatManager.instance.buildings[habID].GetHealthPercentage();
+	}
+
+	public void HideHealthForHabitat (int habID) {
+		healthBarContainers[habID].SetActive(false);
 	}
     
     
