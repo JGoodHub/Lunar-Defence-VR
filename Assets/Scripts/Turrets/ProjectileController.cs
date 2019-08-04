@@ -8,19 +8,21 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 
     //VARIABLES
 
+	[Header("Projectiles Speed and Death Attributes")]
     public float startingSpeed;
 	private float currentSpeed;
+	public GameObject explosionPrefab;
 
 	private Collider projectileCollider;
 
-	public GameObject explosionPrefab;
-
     //METHODS
 
-	public void Initialise () {
+	//Setup the controllers attributes
+	public void InitialiseController () {
 		projectileCollider = GetComponent<BoxCollider>();
 	}
 
+	//Move the projectile forward, passivate it if it flies off map
 	void Update () {
 		transform.position += (transform.forward * currentSpeed) * Time.deltaTime;
 
@@ -29,6 +31,7 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 		}
 	}
 	
+	//Activate the projectile and move it to the active set
 	public void ActivateObject() {
 		currentSpeed = startingSpeed;
 		projectileCollider.enabled = true;
@@ -37,6 +40,9 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 		TurretManager.instance.PassivatedProjectiles.Remove(this);
     }
 
+	//Passivate the projectile and move it to the pooled set
+	//NOTE ---> All pooled projectile stored at same location so collider 
+	//			disabled to avoid inefficient OnTriggerEnter calls
     public void PassivateObject() {
 		currentSpeed = 0;
 		projectileCollider.enabled = false;
@@ -46,10 +52,12 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 		TurretManager.instance.PassivatedProjectiles.Add(this);
     }
 
+	//Damage the meteor if hit and create an explosion then passivate
 	void OnTriggerEnter (Collider other) {
 		if (other.CompareTag("Meteor")) {
 			MeteorController meteor = other.GetComponent<MeteorController>();
 
+			//If this shot killed the meteor increase and update the score values appropriately
 			if (meteor.Damage(1) == true) {	
 				ScoreManager.instance.IncreaseScore(5);
 				ScoreManager.instance.IncrementMeteorsDestroyed();
@@ -63,13 +71,9 @@ public class ProjectileController : MonoBehaviour, IPoolObject {
 			);
 
 			explosionObject.transform.SetParent(other.transform);
-
 			Destroy(explosionObject, 3f);
 
 			PassivateObject();
 		}
-	}
-    
-    
-    
+	}   
 }

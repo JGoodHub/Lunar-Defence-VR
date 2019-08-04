@@ -6,15 +6,19 @@ public class TurretController : MonoBehaviour {
 
     //VARIABLES
 
+	//Turrets current target meteor
+	//NOTE ---> Separate from the manager to allow for individual targeting as a future feature
 	private MeteorController targetMeteor;
 	public MeteorController TargetMeteor { set => targetMeteor = value; }
 
+	[Header("Turret Firing Attributes")]
 	public Transform turretTransform;
 	public float rateOfFire;
 	private float fireCooldown;
 
     //METHODS
 	
+	//Track the current target meteor and fire on it, else reset the rotation to a standby mode
 	void Update () {
 		fireCooldown -= Time.deltaTime;
 		if (targetMeteor != null) {
@@ -24,15 +28,18 @@ public class TurretController : MonoBehaviour {
 																   TurretManager.instance.ProjectileSpeed);
 			turretTransform.LookAt(leadingTargetPosition);
 
+			//Fire with a slight time variance to avoid repeating patterns
 			if (fireCooldown <= 0) {
 				FireProjectile();
-				fireCooldown = rateOfFire + Random.Range(-0.15f, 0.15f);
+				fireCooldown = rateOfFire + Random.Range(-0.10f, 0.10f);
 			}
 		} else {
 			turretTransform.LookAt(transform.position + transform.up);
 		}
 	}
 
+	//Calculate the leading position of a moving target using its velocity and that of the projectile
+	//NOTE ---> Formula taken from: http://www.tosos.com/pages/calculating-a-lead-on-a-target
 	public Vector3 CalculateLeadingTarget (Vector3 shooterPosition, Vector3 targetPosition, Vector3 targetVelocity, float projectileSpeed) {
 		float A = targetVelocity.sqrMagnitude - Mathf.Pow(projectileSpeed, 2);
 		float B = Vector3.Dot(2 * (targetPosition - shooterPosition), targetVelocity);
@@ -50,6 +57,7 @@ public class TurretController : MonoBehaviour {
 		}
 	}
 
+	//Fire a projectile in the current turret direction
 	private void FireProjectile () {
 		ProjectileController projectileInstance = TurretManager.instance.GetPassivatedProjectile();
 		projectileInstance.ActivateObject();
@@ -57,6 +65,7 @@ public class TurretController : MonoBehaviour {
 		projectileInstance.transform.position = turretTransform.position;
 		projectileInstance.transform.forward = turretTransform.forward;
 		
+		//Offset the projectile so its outside the barrel
 		projectileInstance.transform.position += projectileInstance.transform.forward * 3f;
 	}
     

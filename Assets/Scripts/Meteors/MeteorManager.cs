@@ -18,14 +18,20 @@ public class MeteorManager : MonoBehaviour {
 
     //VARIABLES
 
+	[Header("Meteor Spawn Attributes")]
+	public GameObject meteorPrefab;
+
+	[Header("Spawn Location")]
 	public float spawnCeiling;
 	public float spawnInnerRadius;
 	public float spawnOuterRadius;
+
+	[Header("Spawn Rate")]
 	public float spawnInterval;
 	public float spawnDelay;
 
-	public GameObject meteorPrefab;
-
+	//Pools for activate and passivated meteors
+	//TODO ---> Move to own class, see interface
 	private const int passivatedPoolSize = 30;
 	private List<MeteorController> activeMeteors = new List<MeteorController>();
 	public List<MeteorController> ActivateMeteors { get => activeMeteors; }
@@ -35,11 +41,13 @@ public class MeteorManager : MonoBehaviour {
 
     //METHODS
 
+	//Setup the managers attributes
 	public void InitialiseManager () {
 		FillMeteorPool();
 		InvokeRepeating("HurlMeteor", spawnDelay, spawnInterval);
 	}
 
+	//Fill the meteor pool with passivated instances
 	private void FillMeteorPool () {
 		int passivatedCount = passivatedMeteors.Count;
 		while (passivatedCount < passivatedPoolSize) {
@@ -52,6 +60,7 @@ public class MeteorManager : MonoBehaviour {
 		}
 	}
 
+	//Get a passivated meteor instance
 	private MeteorController GetPassivatedMeteor () {
 		if (passivatedMeteors.Count == 0) {
 			FillMeteorPool();
@@ -60,16 +69,20 @@ public class MeteorManager : MonoBehaviour {
 		return passivatedMeteors[0];
 	}
 
+	//Activate and throw a meteor at one of the habitats
 	private void HurlMeteor () {
 		MeteorController activatedMeteor = GetPassivatedMeteor();
 		activatedMeteor.ActivateObject();
 
+		//Start the meteor on a random point on the spawn disc
 		Vector3 startingPositionOffset = (new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized);
 		startingPositionOffset = (startingPositionOffset * spawnInnerRadius) + 
 								 (startingPositionOffset * Random.Range(0f, spawnOuterRadius - spawnInnerRadius));
 		
 		activatedMeteor.transform.position = (Vector3.up * spawnCeiling) + startingPositionOffset;
-		activatedMeteor.SetTargetPosition(HabitatManager.instance.GetRandomBuilding().transform.position);
+
+		//Target a random habitat
+		activatedMeteor.SetTargetPosition(HabitatManager.instance.GetRandomHabitat().transform.position);
 
 		if (drawSpawnGizmos) {
 			Debug.DrawRay(Vector3.up * spawnCeiling, startingPositionOffset, Color.magenta, 1f);
@@ -88,6 +101,7 @@ public class MeteorManager : MonoBehaviour {
 		}
 	}
 
+	//Draw a circle using line gizmos
 	private void DrawGizmosCircle (float radius, int segments, Vector3 center) {
 		float angleStep = 360f / segments;
 		float angleStepAsRad = angleStep * Mathf.Deg2Rad;

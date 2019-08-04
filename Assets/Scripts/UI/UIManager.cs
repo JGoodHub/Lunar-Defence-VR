@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour {
 
     //METHODS
 
+	//Setup the managers attributes
 	public void InitialiseManager () {
 		UpdateCurrentScores();
 
@@ -43,18 +44,22 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
+	//Called once a frame
 	void Update () {
 		UpdateTargeterPosition();	
 	}
 
+	//Trigger the game to restart
 	public void RestartGameTrigger () {
 		GameManager.instance.RestartGame();
 	}
 
+	//Unhide the game over panel
 	public void ShowGameOverPanel () {
 		gameOverPanel.SetActive(true);
 	}
     
+	//Update the targeters position to hover over the target meteor
 	private void UpdateTargeterPosition () {
 		if (TurretManager.instance.TargetMeteor == null) {
 			targeterTransform.position = new Vector3(0, -100, 0);
@@ -67,15 +72,18 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
+	//Display the health overlay for a given habitat
 	public void DisplayHealthForHabitat (int habID) {
 		healthBarContainers[habID].SetActive(true);
-		healthBarFills[habID].fillAmount = HabitatManager.instance.buildings[habID].GetHealthPercentage();
+		healthBarFills[habID].fillAmount = HabitatManager.instance.habitats[habID].GetHealthPercentage();
 	}
 
+	//Hide the health overlay for a given habitat
 	public void HideHealthForHabitat (int habID) {
 		healthBarContainers[habID].SetActive(false);
 	}
 
+	//Create the string for the score board and display it
 	public void UpdateCurrentScores () {
 		//TODO ---> Replace with string builder for better efficiency
 		string output = "";

@@ -4595,7 +4595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbb7b549967fd774bb46725ffeb60f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildings:
+  habitats:
   - {fileID: 232401999}
   - {fileID: 1136543120}
   - {fileID: 579201910}
@@ -4952,13 +4952,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9e059cafb856434fbf8106f215ea3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCeiling: 450
-  spawnInnerRadius: 600
-  spawnOuterRadius: 800
-  spawnInterval: 5
-  spawnDelay: 10
   meteorPrefab: {fileID: 4329830597194686033, guid: 79ae12106fc46924db03077b08c1fcfd,
     type: 3}
+  spawnCeiling: 400
+  spawnInnerRadius: 700
+  spawnOuterRadius: 800
+  spawnInterval: 8
+  spawnDelay: 10
   drawSpawnGizmos: 0
 --- !u!1001 &1894640443
 PrefabInstance:
@@ -5445,6 +5445,11 @@ PrefabInstance:
     - target: {fileID: 8593678564980920861, guid: e3f2c2ee1349df642912edac42d8393b,
         type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8593678564980920861, guid: e3f2c2ee1349df642912edac42d8393b,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5977,16 +5982,6 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 431635522}
-    - target: {fileID: 8593678564980920861, guid: e3f2c2ee1349df642912edac42d8393b,
-        type: 3}
-      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8593678564980920861, guid: e3f2c2ee1349df642912edac42d8393b,
-        type: 3}
-      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3f2c2ee1349df642912edac42d8393b, type: 3}
 --- !u!4 &5006512735087413373 stripped

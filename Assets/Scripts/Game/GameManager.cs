@@ -19,10 +19,12 @@ public class GameManager : MonoBehaviour {
 
     //VARIABLES
 
+	//Game over state
 	[HideInInspector] public bool gameOver = false;
 
     //METHODS
 
+	//Initialise all the managers in the correct order
 	void Start () {
 		TurretManager.instance.InitialiseManager();
 		MeteorManager.instance.InitialiseManager();
@@ -31,16 +33,16 @@ public class GameManager : MonoBehaviour {
 		UIManager.instance.InitialiseManager();
 	}
 
+	//Trigger the end of the game
 	public void EndGame () {
 		gameOver = true;
 		UIManager.instance.ShowGameOverPanel();
 		ScoreManager.instance.SaveLocalHighscore();
 	}
 	
+	//Restart the game
 	public void RestartGame () {
-		Debug.Log("Loading Scene");
 		SceneManager.LoadScene(0);
-	}
-    
+	}   
     
 }
