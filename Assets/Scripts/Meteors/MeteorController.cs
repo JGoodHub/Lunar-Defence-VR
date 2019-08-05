@@ -46,6 +46,9 @@ public class MeteorController : MonoBehaviour, IPoolObject {
 	}
 
 	//Set this meteor at the turrets target
+	//NOTE ---> Currently a meteor is targetted using "PointerEnter" event, this should be 
+	//			changed to the "PointerClick" event as the specification asks however I
+	//			didn't have a controller to test this on
 	public void SetAsTarget () {
 		TurretManager.singleton.SetTurretsTarget(this);
 	}
