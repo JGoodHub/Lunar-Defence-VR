@@ -30,7 +30,8 @@ public class UIManager : MonoBehaviour {
 	[Header("Score Board Elements")]
 	public TextMeshProUGUI scoreBoardText;
 
-	[Header("Game Over Panel Elements")]
+	[Header("Start and End Game Panel Elements")]
+	public GameObject startGamePanel;
 	public GameObject gameOverPanel;
 
     //METHODS
@@ -47,6 +48,17 @@ public class UIManager : MonoBehaviour {
 	//Called once a frame
 	void Update () {
 		UpdateTargeterPosition();	
+	}
+
+	//Trigger the game to start
+	public void StartGameTrigger () {
+		GameManager.singleton.StartGame();
+		HideStartGamePanel();
+	}
+
+	//Hide the start game panel
+	public void HideStartGamePanel () {
+		startGamePanel.SetActive(false);
 	}
 
 	//Trigger the game to restart

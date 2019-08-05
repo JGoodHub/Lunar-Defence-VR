@@ -33,6 +33,11 @@ public class GameManager : MonoBehaviour {
 		UIManager.singleton.InitialiseManager();
 	}
 
+	//Trigger the start of the game
+	public void StartGame () {
+		MeteorManager.singleton.StartSpawningMeteors();
+	}
+
 	//Trigger the end of the game
 	public void EndGame () {
 		gameOver = true;

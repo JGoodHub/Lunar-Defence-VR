@@ -44,6 +44,9 @@ public class MeteorManager : MonoBehaviour {
 	//Setup the managers attributes
 	public void InitialiseManager () {
 		FillMeteorPool();
+	}
+
+	public void StartSpawningMeteors () {
 		InvokeRepeating("HurlMeteor", spawnDelay, spawnInterval);
 	}
 
