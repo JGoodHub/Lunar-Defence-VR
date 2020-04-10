@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &97249385070092335
 Transform:
@@ -69,13 +69,11 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -86,13 +84,11 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &4071603211235006987
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +104,7 @@ GameObject:
   m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4071603211235006986
 Transform:
@@ -138,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8674a789d41334840aea11529bed3aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 5
+  startingHealth: 4
   intactModel: {fileID: 5589249336920610612}
   destroyedModel: {fileID: 6367917485621442551}
   shatterEffectPrefab: {fileID: 2186180576441815364, guid: a4589ecd8c83c514eac23476816b65b3,
@@ -150,11 +146,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4071603211235006986}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 60f6c4674cc756d41beb611ba7a05ca6,
+    - target: {fileID: -9138384822779237652, guid: 60f6c4674cc756d41beb611ba7a05ca6,
         type: 3}
-      propertyPath: m_Name
-      value: Habitat Model
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: -7269843877023241164, guid: 60f6c4674cc756d41beb611ba7a05ca6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39358b4a4f1c53d49a4b7df308965d42, type: 2}
     - target: {fileID: -4216859302048453862, guid: 60f6c4674cc756d41beb611ba7a05ca6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -210,6 +211,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 60f6c4674cc756d41beb611ba7a05ca6,
+        type: 3}
+      propertyPath: m_Name
+      value: Habitat Model
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 60f6c4674cc756d41beb611ba7a05ca6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: -788062705670781039, guid: 60f6c4674cc756d41beb611ba7a05ca6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 3014614768876417435, guid: 60f6c4674cc756d41beb611ba7a05ca6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -225,7 +241,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 1331332a62bbd8645bee94a8f463f88a, type: 2}
-    - target: {fileID: -7269843877023241164, guid: 60f6c4674cc756d41beb611ba7a05ca6,
+    - target: {fileID: 3384525719756699486, guid: 60f6c4674cc756d41beb611ba7a05ca6,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -235,11 +251,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3384525719756699486, guid: 60f6c4674cc756d41beb611ba7a05ca6,
+    - target: {fileID: 6980120628624484178, guid: 60f6c4674cc756d41beb611ba7a05ca6,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 39358b4a4f1c53d49a4b7df308965d42, type: 2}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60f6c4674cc756d41beb611ba7a05ca6, type: 3}
 --- !u!4 &9078000394053270463 stripped

@@ -5,10 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/0-Scenes/FreePlay.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/7-Imports/GoogleVR/Demos/Scenes/HelloVR.unity
-    guid: bb36d2905dc634f1c9eecb35beecaca8
   m_configObjects: {}
