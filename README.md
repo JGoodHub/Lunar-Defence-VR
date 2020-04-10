@@ -14,13 +14,13 @@ The alternate method is to take the pre-built app file "Lunar-Defence.apk" from 
 
 Once the game is on the phone the device should be attached/slotted into to the appropriate Google VR viewer, such as a cardboard or other headset.
 
-To start the game click on the "Start Game" button. There is a brief delay of 5 seconds before the meteors rain down to give you some time to adjust the headset.
+To start the game look at the "Start Game" button. There is a brief delay of 5 seconds before the meteors rain down to give you some time to adjust the headset.
 
 The aim of the game is to target the meteors before they reach the habitats. To target a meteor simply look at it until a target reticle appears. Once locked on the turrets will begin automatically firing on the meteor until either it's destroyed or it hits one of the habitats.
 
 Meteors spawn from all directions in a circle around the player so be sure to keep an eye out. If a meteor hits a habitat it damages it, if too many hit then that habitat is destroyed in an explosive fashion. Once all the habitats have been destroyed the game is over.
 
-5 points are awarded for destroying a meteor and a local highscore is kept on the phone so you can challenge your friends. Once the game is over it can be restarted by clicking on the "Restart" button.
+5 points are awarded for destroying a meteor and a local highscore is kept on the phone so you can challenge your friends. Once the game is over it can be restarted by looking at the "Restart" button.
 
 ### Altering difficulty
 
